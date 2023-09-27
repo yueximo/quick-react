@@ -1,8 +1,11 @@
 import Course from "./Course";
 
+
 const CourseList = ({courses}) => (
-    <div>
-        {Object.entries(courses).map(([id, course]) => <Course key={id} courseInfo={course} />)}
+    <div className="container">
+        <div className="row">
+            {Object.entries(courses).map(([id, course]) => <div key={id} className="col-sm"><Course courseInfo={course} /></div>)}
+        </div>
     </div>
 );
 
