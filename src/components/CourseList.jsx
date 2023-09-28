@@ -1,14 +1,22 @@
-import Course from "./Course";
+import Course from './Course';
 
+const CourseList = ({ courses, selectedTerm }) => {
+  const filteredCourses = Object.entries(courses).filter(
+    ([id, course]) => course['term'] === selectedTerm
+  );
 
-const CourseList = ({courses}) => (
-    <div className="container">
-        <div className="row">
-            {Object.entries(courses).map(([id, course]) => <div key={id} className="col-sm"><Course courseInfo={course} /></div>)}
-        </div>
+  console.log(filteredCourses);
+  return (
+    <div className='container'>
+      <div className='row'>
+        {filteredCourses.map(([id, course]) => (
+          <div key={id} className='col-sm'>
+            <Course courseInfo={course} />
+          </div>
+        ))}
+      </div>
     </div>
-);
+  );
+};
 
 export default CourseList;
-
-  
