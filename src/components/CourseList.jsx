@@ -1,17 +1,25 @@
 import Course from './Course';
 
-const CourseList = ({ courses, selectedTerm }) => {
+const CourseList = ({
+  courses,
+  selectedTerm,
+  selectedClasses,
+  toggleSelectedClass,
+}) => {
   const filteredCourses = Object.entries(courses).filter(
     ([id, course]) => course['term'] === selectedTerm
   );
 
-  console.log(filteredCourses);
   return (
     <div className='container'>
       <div className='row'>
         {filteredCourses.map(([id, course]) => (
           <div key={id} className='col-sm'>
-            <Course courseInfo={course} />
+            <Course
+              courseInfo={course}
+              selectedClasses={selectedClasses}
+              toggleSelectedClass={toggleSelectedClass}
+            />
           </div>
         ))}
       </div>

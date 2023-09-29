@@ -8,7 +8,15 @@ import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Main = () => {
-  const [selectedTerm, setSelectedTerm] = useState('Fall'); // Initial term set to Fall
+  const [selectedTerm, setSelectedTerm] = useState('Fall');
+  const [selectedClasses, setSelectedClasses] = useState([]);
+
+  const toggleSelectedClass = (course) =>
+    setSelectedClasses(
+      selectedClasses.includes(course)
+        ? selectedClasses.filter((c) => c !== course)
+        : [...selectedClasses, course]
+    );
 
   const [data, isLoading, error] = useJsonQuery(
     'https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php'
@@ -22,7 +30,12 @@ const Main = () => {
     <div>
       <Banner title={data.title} />
       <MenuPage selection={selectedTerm} setSelection={setSelectedTerm} />
-      <CourseList courses={data.courses} selectedTerm={selectedTerm} />
+      <CourseList
+        courses={data.courses}
+        selectedTerm={selectedTerm}
+        selectedClasses={selectedClasses}
+        toggleSelectedClass={toggleSelectedClass}
+      />
     </div>
   );
 };
