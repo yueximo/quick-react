@@ -21,7 +21,7 @@ const MenuButton = ({ term, selection, setSelection }) => (
 );
 
 const TermSelector = ({ selection, setSelection }) => (
-  <div className='btn-group d-flex justify-content-center'>
+  <div className='btn-group d-flex'>
     {Object.keys(terms).map((term) => (
       <MenuButton
         key={term}

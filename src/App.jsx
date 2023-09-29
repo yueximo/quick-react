@@ -1,7 +1,9 @@
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
+import Modal from './components/Modal';
 import MenuPage from './components/MenuPage';
+import CourseCart from './components/CourseCart';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
 import { useState } from 'react';
@@ -10,6 +12,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Main = () => {
   const [selectedTerm, setSelectedTerm] = useState('Fall');
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const clickModal = () => setOpen(!open);
+  const closeModal = () => setOpen(false);
 
   const toggleSelectedClass = (course) =>
     setSelectedClasses(
@@ -29,7 +35,15 @@ const Main = () => {
   return (
     <div>
       <Banner title={data.title} />
-      <MenuPage selection={selectedTerm} setSelection={setSelectedTerm} />
+      <div className='menuButtons'>
+        <MenuPage selection={selectedTerm} setSelection={setSelectedTerm} />
+        <button className='btn btn-success mb-1 p-2.5' onClick={clickModal}>
+          Course Plan
+        </button>
+        <Modal open={open} close={closeModal}>
+          <CourseCart selected={selectedClasses} />
+        </Modal>
+      </div>
       <CourseList
         courses={data.courses}
         selectedTerm={selectedTerm}
