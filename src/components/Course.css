@@ -2,3 +2,8 @@
   background-color: lemonchiffon;
   color: green;
 }
+
+.course.card.conflict {
+  background-color: #d22730;
+  color: white;
+}

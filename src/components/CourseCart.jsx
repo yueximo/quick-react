@@ -6,7 +6,7 @@ const CourseCart = ({ selected }) => (
       <h2>No Courses Selected</h2>
     ) : (
       selected.map((course) => (
-        <div class='course' key='{course.term + course.number}'>
+        <div className='course' key={course.term + course.number}>
           <p>
             {course.term} CS {course.number}
           </p>
