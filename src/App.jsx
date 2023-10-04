@@ -1,14 +1,15 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Modal from './components/Modal';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
-import Modal from './components/Modal';
 import MenuPage from './components/MenuPage';
 import CourseCart from './components/CourseCart';
 import { hasTimeConflict } from './utilities/conflict';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
 import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Main = () => {
   const [selectedTerm, setSelectedTerm] = useState('Fall');

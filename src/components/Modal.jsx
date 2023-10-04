@@ -2,13 +2,12 @@ import './Modal.css';
 
 const Modal = ({ children, open, close }) => (
   <div
-    className={`modal ${open ? 'modal-show' : ''}`}
+    className={`modal modal-lg ${open ? 'modal-show' : ''}`}
     tabIndex='-1'
     role='dialog'
     onClick={(e) => {
       if (e.target === e.currentTarget) close();
     }}
-    style={{ display: open ? 'block' : 'none' }}
   >
     <div className='modal-dialog' role='document'>
       <div className='modal-content'>
