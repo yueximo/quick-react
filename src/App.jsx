@@ -44,7 +44,7 @@ const Main = () => {
         <button className='btn btn-success mb-1 p-2.5' onClick={clickModal}>
           Course Plan
         </button>
-        <Modal open={open} close={closeModal}>
+        <Modal open={open} close={closeModal} title={"Course Plan"}>
           <CourseCart selected={selectedClasses} />
         </Modal>
       </div>
