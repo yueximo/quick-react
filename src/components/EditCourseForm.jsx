@@ -12,7 +12,6 @@ const EditCourseForm = ({ course, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission with the form data in 'formData.values'
   };
 
   return (
@@ -27,11 +26,11 @@ const EditCourseForm = ({ course, onClose }) => {
             onChange={handleInputChange}
           />
           {formData.errors.editedTitle && (
-            <span className='error'>{formData.errors.editedTitle}</span>
+            <p className='error'>{formData.errors.editedTitle}</p>
           )}
         </div>
         <div className='form-group'>
-          <label htmlFor='editedMeetingTimes'>Meeting Times:</label>
+          <label>Meeting Times:</label>
           <input
             type='text'
             id='editedMeetingTimes'
