@@ -13,8 +13,6 @@ export const useFormData = (values = {}) => {
     if (id === 'editedTitle') {
       if (value.length < 2) {
         errors[id] = 'Title must be at least 2 characters.';
-      } else {
-        errors[id] = '';
       }
     } else if (id === 'editedMeetingTimes') {
       if (
@@ -23,8 +21,6 @@ export const useFormData = (values = {}) => {
         )
       ) {
         errors[id] = 'Meeting time must have a format like "MWF 12:00-13:20".';
-      } else {
-        errors[id] = '';
       }
     }
 
