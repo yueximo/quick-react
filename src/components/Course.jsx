@@ -1,19 +1,14 @@
 import './Course.css';
 import { hasTimeConflict } from '../utilities/conflict';
-import { useState } from 'react';
-import EditCourseForm from './EditCourseForm';
-import Modal from './Modal';
+import { Link } from 'react-router-dom';
 
 const Course = ({ courseInfo, selectedClasses, toggleSelectedClass }) => {
   const hasConflict = hasTimeConflict(selectedClasses, courseInfo);
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  const toggleEditing = () => setIsEditing(!isEditing);
-
-  const handleButtonClick = (event) => {
-    event.stopPropagation();
-    toggleEditing();
+  const getCourseId = (courseInfo) => {
+    const term = courseInfo.term.charAt(0);
+    const number = courseInfo.number;
+    return `${term}${number}`;
   };
 
   return (
@@ -31,17 +26,18 @@ const Course = ({ courseInfo, selectedClasses, toggleSelectedClass }) => {
           </h3>
           <p className='card-text'>{courseInfo.title}</p>
         </div>
-        <button onClick={handleButtonClick} className="btn btn-primary">
-            Edit
-          </button>
+        <Link
+          to={`/course/${getCourseId(courseInfo)}/edit`}
+          style={{ display: 'inline-block', width: 'fit-content' }}
+          className='m-2'
+        >
+          {' '}
+          <button className='btn btn-primary'>Edit</button>
+        </Link>
         <div>
           <p className='card-footer bg-transparent'>{courseInfo.meets}</p>
         </div>
       </div>
-      <Modal open={isEditing} close={handleButtonClick} title={"Edit Course"}>
-        <EditCourseForm course={courseInfo} onClose={handleButtonClick} />
-      </Modal>
-
     </div>
   );
 };
