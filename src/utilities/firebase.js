@@ -1,16 +1,23 @@
-import { useCallback, useEffect, useState } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { useCallback, useEffect, useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref, update } from "firebase/database";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAmtfevG3D9t9OPOCuz42DrVEDrki90at8',
-  authDomain: 'quick-react-effa4.firebaseapp.com',
-  databaseURL: 'https://quick-react-effa4-default-rtdb.firebaseio.com',
-  projectId: 'quick-react-effa4',
-  storageBucket: 'quick-react-effa4.appspot.com',
-  messagingSenderId: '542167094417',
-  appId: '1:542167094417:web:4cc3aafc40bb6b51b1db30',
-  measurementId: 'G-10XV1Y97F6',
+  apiKey: "AIzaSyAmtfevG3D9t9OPOCuz42DrVEDrki90at8",
+  authDomain: "quick-react-effa4.firebaseapp.com",
+  databaseURL: "https://quick-react-effa4-default-rtdb.firebaseio.com",
+  projectId: "quick-react-effa4",
+  storageBucket: "quick-react-effa4.appspot.com",
+  messagingSenderId: "542167094417",
+  appId: "1:542167094417:web:4cc3aafc40bb6b51b1db30",
+  measurementId: "G-10XV1Y97F6",
 };
 
 const firebase = initializeApp(firebaseConfig);
@@ -56,4 +63,20 @@ export const useDbUpdate = (path) => {
   );
 
   return [updateData, result];
+};
+
+export const signInWithGoogle = () => {
+  signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
+};
+
+const firebaseSignOut = () => signOut(getAuth(firebase));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => onAuthStateChanged(getAuth(firebase), setUser), []);
+
+  return [user];
 };

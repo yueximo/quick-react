@@ -18,13 +18,10 @@ const AuthButton = () => {
   return user ? <SignOutButton /> : <SignInButton />;
 };
 
-const Banner = ({ title }) => (
-  <div style={{ textAlign: "center", marginTop: "5em" }}>
-    <h1>{title}</h1>
-    <div>
-      <AuthButton />
-    </div>
-  </div>
+const Navigation = () => (
+  <nav className="d-flex">
+    <AuthButton />
+  </nav>
 );
 
-export default Banner;
+export default Navigation;
